@@ -1,0 +1,7 @@
+{
+  "name": "bitcoin-chart",
+  "version": "1.0.0",
+  "description": "Bitcoin exchange rate chart",
+  "author": "Alejo Rodriguez <a.rodsott@gmail.com>",
+  "license": "MIT"
+}
