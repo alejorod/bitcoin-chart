@@ -1,0 +1,367 @@
+$background-color: #181c33;;
+$border-color: rgba(255, 255, 255, 0.15);
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+html,
+body {
+  background: $background-color;
+}
+
+.sidebar {
+  width: 300px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: #15192d;
+  overflow: hidden;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 50px;
+  overflow-y: auto;
+
+  h3 {
+    text-align: center;
+    color: #5b607d;
+    font-family: sans-serif;
+    font-size: 13px;
+    padding-top: 20px;
+  }
+
+  .current-rate {
+    overflow: hidden;
+    padding-bottom: 20px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .account-summary {
+    overflow: hidden;
+  }
+
+  .transactions {
+
+    h3 {
+      padding-bottom: 20px;
+    }
+
+    .transaction {
+      padding: 15px 40px;
+      overflow: hidden;
+      background: #1a1f35;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 11px;
+      font-family: sans-serif;
+      font-weight: normal;
+      color: #fdfdfd;
+      transition-duration: .2s;
+
+      &:nth-child(odd) {
+        background: #1e223a;
+      }
+
+      &:hover {
+        background: #131629;
+        transform: scale(1.04);
+      }
+
+      &-ammount,
+      &-profit {
+        float: left;
+        width: 50%;
+      }
+
+      &-ammount {
+        text-align: left;
+      }
+
+      &-profit {
+        text-align: right;
+        font-weight: bold;
+
+        &.high {
+          color: #bdf1c7;
+        }
+
+        &.low {
+          color: #ffadad;
+        }
+      }
+    }
+
+    .actions {
+      overflow: hidden;
+
+      button {
+        width: 100%;
+        font-weight: normal;
+        padding: 15px 0;
+        font-size: 9px;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        border: none;
+        cursor: pointer;
+        background: #15192d;
+        transition-duration: .2s;
+        color: #fdfdfd;
+        text-align: left;
+        border-left: 2px solid #15192d;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+        .fa {
+          font-size: 10px;
+          display: inline-block;
+          margin: 0 15px;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          color: #bdf1c7;
+          background: #131629;
+          border-left: 2px solid #bdf1c7;
+        }
+      }
+    }
+  }
+
+  .profile {
+    position: fixed;
+    width: 100%;
+    color: #5b607d;
+    bottom: 0;
+    padding: 10px 15px;
+    background: #121527;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    transition-duration: .2s;
+    cursor: pointer;
+
+    &:hover {
+      color: #fdfdfd;
+    }
+
+    &-icon {
+      display: inline-block;
+      padding: 5px 8px;
+      border: 1px solid;
+      border-radius: 34px;
+      font-size: 10px;
+      margin-right: 10px;
+    }
+
+    &-name {
+      display: inline-block;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+  }
+
+  .stat {
+    color: white;
+    padding: 20px 10px;
+    font-family: sans-serif;
+    width: 50%;
+    float: left;
+
+
+    &.high {
+      color: #bdf1c7;
+
+      .stat-item .name {
+        color: #bdf1c7;
+      }
+    }
+
+    &.low {
+      color: #ffadad;
+
+      .stat-item .name {
+        color: #ffadad;
+      }
+    }
+
+    &-icon {
+      width: 35px;
+      font-size: 22px;
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    &-item {
+      display: inline-block;
+      vertical-align: middle;
+
+      .value {
+        margin-bottom: 2px;
+
+        .fa {
+          font-size: 9px;
+          vertical-align: middle;
+        }
+      }
+
+      .name {
+        text-transform: uppercase;
+        font-size: 10px;
+        text-align: left;
+        color: #bdf1c7;
+      }
+    }
+  }
+}
+
+.content {
+  margin-right: 300px;
+  overflow: hidden;
+
+  .chart {
+    position: relative;
+
+    .title {
+      margin: 10px;
+      position: absolute;
+      top: 0;
+
+      span {
+        color: #5b607d;
+        font-size: 11px;
+        text-transform: uppercase;
+        font-family: sans-serif;
+      }
+    }
+
+    .legends {
+      margin: 10px;
+      position: absolute;
+      bottom: 0;
+
+      span {
+        color: #15192d;
+        margin-bottom: 4px;
+        display: block;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        font-size: 9px;
+        padding: 2px 5px;
+        border-radius: 2px;
+
+        &.sell {
+          background: #bdf1c7;
+        }
+
+        &.buy {
+          background: #7ec9e8;
+        }
+
+        &.name {
+
+        }
+      }
+    }
+  }
+
+  .top {
+    height: 50vh;
+    border-bottom: 3px solid #121527;
+  }
+
+  .bottom {
+    height: 50vh;
+
+    .left {
+      width: 50%;
+      height: 100%;
+      float: left;
+      border-right: 3px solid #121527;
+    }
+
+    .right {
+      width: 50%;
+      height: 100%;
+      float: left;
+    }
+  }
+}
+
+
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+
+  &.hidden {
+    display: none;
+  }
+
+  .container {
+    width: 60vw;
+    max-height: 60vh;
+    background: #111425;
+    margin: 0 auto;
+    margin-top: 20vh;
+    border-radius: 3px;
+    position: relative;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.5);
+
+    .close {
+      position: absolute;
+      font-size: 20px;
+      top: 5px;
+      right: 10px;
+      color: #5b607d;
+    }
+
+    .content {
+      margin: 0;
+
+      h3 {
+        text-align: center;
+        color: #5b607d;
+        font-family: sans-serif;
+        font-size: 14px;
+        margin: 30px;
+      }
+
+      .transaction {
+        overflow: hidden;
+        color: #fdfdfd;
+        font-family: sans-serif;
+        font-weight: lighter;
+        font-size: 12px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: #191d2f;
+        transition-duration: .2s;
+
+        &:nth-child(odd) {
+          background: #15192b;
+        }
+
+        &:hover {
+          background: #0e121f;
+          transform: scale(1.01);
+        }
+
+        span {
+          display: block;
+          width: 25%;
+          float: left;
+          padding: 15px;
+        }
+      }
+    }
+  }
+}

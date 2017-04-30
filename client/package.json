@@ -1,7 +1,14 @@
 {
   "name": "bitcoin-chart",
   "version": "1.0.0",
-  "description": "Bitcoin exchange rate chart",
+  "description": "Bitcoin exchange rate dashboard",
   "author": "Alejo Rodriguez <a.rodsott@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "css": "node-sass sass/main.scss -o static",
+    "css:watch": "npm run css && node-sass sass/main.scss -wo static"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.2"
+  }
 }
