@@ -126,7 +126,6 @@ var Chart = (function(document) {
       let index = Math.floor((e.clientX - rect.left + w / 2) / w);
       let x = index * w;
       this.ctx.clearRect(0, 0, rect.width, rect.height);
-      this.draw();
       this.ctx.strokeStyle = '#121527';
       this.ctx.lineWidth = 1;
       this.ctx.beginPath();
@@ -160,12 +159,23 @@ var Chart = (function(document) {
         };
       });
 
+      if (values.length >= 2) {
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = '#fdfdfd';
+        this.ctx.beginPath();
+        this.ctx.moveTo(values[0].point.x, values[0].point.y);
+        this.ctx.lineTo(values[1].point.x, values[1].point.y);
+        this.ctx.stroke();
+      }
+
       values.forEach(v => {
         this.ctx.fillStyle = v.color;
         this.ctx.beginPath();
         this.ctx.arc(v.point.x, v.point.y, 3, 0, Math.PI * 2);
         this.ctx.fill();
       });
+
+      this.draw();
     }
 
     onMouseLeave(e) {
