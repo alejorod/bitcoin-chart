@@ -83,7 +83,7 @@ var Chart = (function(document) {
         this.ctx.fillStyle = colors[k].dot;
         let lineData = this.data.lines[k];
         this.ctx.beginPath();
-        for (var i = 0; i < lineData.length - 2; i++) {
+        for (var i = 0; i < lineData.length - 1; i++) {
           let a = this.transformCoords(i, lineData[i]);
           let c = this.transformCoords(i + 1, lineData[i + 1]);
           let x = (a.x + c.x) / 2;
@@ -91,21 +91,19 @@ var Chart = (function(document) {
           this.ctx.quadraticCurveTo(a.x, a.y, x, y);
         }
         this.ctx.stroke();
-        let o = this.transformCoords(
-          lineData.length - 3,
-          lineData[lineData.length - 3]
-        );
+        
         let coord = this.transformCoords(
           lineData.length - 2,
           lineData[lineData.length - 2]
         );
-        this.ctx.beginPath();
-        this.ctx.moveTo((o.x + coord.x) / 2, (o.y + coord.y) / 2);
-        this.ctx.lineTo(coord.x, coord.y);
-        this.ctx.stroke();
+
+        let end = this.transformCoords(
+          lineData.length - 1,
+          lineData[lineData.length - 1]
+        );
 
         this.ctx.beginPath();
-        this.ctx.arc(coord.x, coord.y, 5, 0, Math.PI * 2);
+        this.ctx.arc((coord.x + end.x) / 2, (coord.y + end.y) / 2, 5, 0, Math.PI * 2);
         this.ctx.fill();
       });
     }
@@ -123,14 +121,15 @@ var Chart = (function(document) {
       };
       let rect = this.canvas.getBoundingClientRect();
       let w = rect.width / this.data.maxX;
+      let realX = e.clientX - rect.left;
       let index = Math.floor((e.clientX - rect.left + w / 2) / w);
       let x = index * w;
       this.ctx.clearRect(0, 0, rect.width, rect.height);
       this.ctx.strokeStyle = '#121527';
       this.ctx.lineWidth = 1;
       this.ctx.beginPath();
-      this.ctx.moveTo(x, 0);
-      this.ctx.lineTo(x, rect.height);
+      this.ctx.moveTo(realX, 0);
+      this.ctx.lineTo(realX, rect.height);
       this.ctx.stroke();
 
       let keys = Object.keys(this.data.lines);
@@ -151,7 +150,7 @@ var Chart = (function(document) {
         p3.x = (p2.x + p3.x) / 2;
         p3.y = (p2.y + p3.y) / 2;
 
-        let tx = (x - p1.x) / (p3.x - p1.x);
+        let tx = (realX - p1.x) / (p3.x - p1.x);
 
         return {
           color: colors[k].dot,
