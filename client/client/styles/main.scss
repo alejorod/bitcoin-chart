@@ -93,40 +93,36 @@ body {
       }
     }
 
-    .actions {
-      overflow: hidden;
+    button {
+      width: 100%;
+      font-weight: normal;
+      padding: 15px 0;
+      font-size: 9px;
+      text-transform: uppercase;
+      font-family: sans-serif;
+      border: none;
+      cursor: pointer;
+      background: #15192d;
+      transition-duration: .2s;
+      color: #fdfdfd;
+      text-align: left;
+      border-left: 2px solid #15192d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 
-      button {
-        width: 100%;
-        font-weight: normal;
-        padding: 15px 0;
-        font-size: 9px;
-        text-transform: uppercase;
-        font-family: sans-serif;
-        border: none;
-        cursor: pointer;
-        background: #15192d;
-        transition-duration: .2s;
-        color: #fdfdfd;
-        text-align: left;
-        border-left: 2px solid #15192d;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      .fa {
+        font-size: 10px;
+        display: inline-block;
+        margin: 0 15px;
+      }
 
-        .fa {
-          font-size: 10px;
-          display: inline-block;
-          margin: 0 15px;
-        }
+      &:focus {
+        outline: none;
+      }
 
-        &:focus {
-          outline: none;
-        }
-
-        &:hover {
-          color: #bdf1c7;
-          background: #131629;
-          border-left: 2px solid #bdf1c7;
-        }
+      &:hover {
+        color: #bdf1c7;
+        background: #131629;
+        border-left: 2px solid #bdf1c7;
       }
     }
   }
@@ -226,6 +222,11 @@ body {
 
   .chart {
     position: relative;
+    transition-duration: .3s;
+
+    &:hover {
+      background: #232744;
+    }
 
     .title {
       margin: 10px;
