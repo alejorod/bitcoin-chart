@@ -23,7 +23,7 @@ export default class LineChart extends React.Component {
         </div>
         <div className="legends">
           {labels.map(l => {
-            <span className={ l }>{ l }</span>
+            return (<span className={ l }>{ l }</span>);
           })}
         </div>
       </div>
